@@ -1,51 +1,34 @@
 class Level {
-    constructor (width, height, sizeCase) {
-        this.columns = width; //15
-        this.rows = height; //13
-        this.sizeCase = 40; 
-        this.grid = [];
+  constructor(width, height, sizeCase) {
+    this.columns = width; // 15
+    this.rows = height; // 13
+    this.sizeCase = sizeCase;
+    this.grid = [];
 
-        this.createGrid();
-    }
-    createGrid() {
-        for(let row; row < this.rows; row++) {
-            this.grid[i] = [];
-            for(let column; column < this.columns; column++){
-                if(row === 0 || row === this.rows[-1] || column === 0 || column === this.columns[-1]) {
-                    this.grid[row][column] = 'W';
-                }
-                else {
-                    this.grid[row][column] = '.';
-                }
-            }
+    this.createGrid();
+  }
+
+  createGrid() {
+    for (let row = 0; row < this.rows; row++) {
+      // ✅ = 0
+      this.grid[row] = [];
+
+      for (let column = 0; column < this.columns; column++) {
+
+        if (
+          row === 0 ||
+          row === this.rows - 1 ||
+          column === 0 ||
+          column === this.columns - 1
+        ) {
+          this.grid[row][column] = "W";
+        } else {
+          this.grid[row][column] = ".";
         }
+      }
     }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 const canvasElement = document.getElementById("canvas");
