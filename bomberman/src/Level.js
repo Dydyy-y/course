@@ -6,29 +6,35 @@ class Level {
     this.grid = [];
 
     this.createGrid();
-  }
+    }
 
   createGrid() {
     for (let row = 0; row < this.rows; row++) {
-      // ✅ = 0
-      this.grid[row] = [];
+        this.grid[row] = [];
 
-      for (let column = 0; column < this.columns; column++) {
-
-        if (
-          row === 0 ||
-          row === this.rows - 1 ||
-          column === 0 ||
-          column === this.columns - 1
-        ) {
-          this.grid[row][column] = "W";
-        } else {
-          this.grid[row][column] = ".";
+        for (let column = 0; column < this.columns; column++) {
+            if (    //border
+                row === 0 ||
+                row === this.rows - 1 ||
+                column === 0 ||
+                column === this.columns - 1
+            ) {
+                this.grid[row][column] = "W";
+            } 
+            else if (row >= 2 && row % 2 === 0 && column >= 2 && column % 2 === 0) {
+                this.grid[row][column] = "W";  // ← NE PAS OUBLIER !
+            }
+            else {
+                this.grid[row][column] = ".";
+            }
         }
-      }
     }
-  }
 }
+
+}
+
+const level = new Level(15, 13, 40);
+console.table(level.grid);
 
 /*
 const canvasElement = document.getElementById("canvas");
