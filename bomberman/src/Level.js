@@ -1,7 +1,7 @@
 class Level {
   constructor(width, height, sizeCase) {
-    this.columns = width; // 15
-    this.rows = height; // 13
+    this.columns = width;
+    this.rows = height;
     this.sizeCase = sizeCase;
     this.grid = [];
 
@@ -21,8 +21,8 @@ class Level {
             ) {
                 this.grid[row][column] = "W";
             } 
-            else if (row >= 2 && row % 2 === 0 && column >= 2 && column % 2 === 0) {
-                this.grid[row][column] = "W";  // ← NE PAS OUBLIER !
+            else if (row >= 2 && row % 2 === 0 && column >= 2 && column % 2 === 0) {    //wall grid
+                this.grid[row][column] = "W";
             }
             else {
                 this.grid[row][column] = ".";
