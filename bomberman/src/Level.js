@@ -1,8 +1,7 @@
-
 class Level {
-  constructor(width, height, sizeCase) {
-    this.columns = width;
-    this.rows = height;
+  constructor(columns, rows, sizeCase) {
+    this.columns = columns;
+    this.rows = rows;
     this.sizeCase = sizeCase;
     this.grid = [];
 
@@ -52,17 +51,3 @@ class Level {
 
 const level = new Level(15, 13, 40);
 console.table(level.grid);
-
-/*
-const canvasElement = document.getElementById("canvas");
-const ctx = canvas.getContext('2d');
-
-canvas.height = 400;
-canvas.width = 400;
-
-ctx.fillStyle = 'blue'
-
-ctx.beginPath();
-ctx.arc(200, 200, 50, 0, 2 * Math.PI)
-
-ctx.fill(); */
