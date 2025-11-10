@@ -5,7 +5,7 @@ class Level {
     this.sizeCase = sizeCase;
     this.grid = [];
 
-    this.createGrid();
+    this.createGrid();  //automatic call for the method
   }
 
   createGrid() {
