@@ -48,6 +48,3 @@ class Level {
     }
   }
 }
-
-const level = new Level(15, 13, 40);
-console.table(level.grid);
