@@ -59,7 +59,7 @@ class Game {
         direction = "left";
       } else if (event.key === "ArrowRight") {
         direction = "right";
-      //zqsd
+        //zqsd
       } else if (event.key === "z" || event.key === "Z") {
         direction = "up";
       } else if (event.key === "s" || event.key === "S") {
@@ -75,7 +75,7 @@ class Game {
 
         const moved = this.player.move(direction, this.level);
 
-        if (moved) {  //draw player if move
+        if (moved) { //draw player if move
           this.render();
         }
       }
