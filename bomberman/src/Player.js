@@ -11,18 +11,18 @@ class Player extends Entity {
     let newX = this.x;
     let newY = this.y;
 
-    //new position selon la direction
-    switch(direction) {
-      case 'up':
+    //new position selon direction
+    switch (direction) {
+      case "up":
         newY--;
         break;
-      case 'down':
+      case "down":
         newY++;
         break;
-      case 'left':
+      case "left":
         newX--;
         break;
-      case 'right':
+      case "right":
         newX++;
         break;
     }
@@ -39,21 +39,18 @@ class Player extends Entity {
 
   //check déplacement newcase
   canMoveTo(x, y, level) {
-    if (y < 0 || y >= level.rows || 
-        x < 0 || x >= level.columns) {
+    if (y < 0 || y >= level.rows || x < 0 || x >= level.columns) {
       return false;
     }
-
-    const cellType = level.grid[y][x]; //
-
-    return cellType === '.';
+    const cellType = level.grid[y][x];
+    return cellType === ".";
   }
 
   render(ctx, sizeCase) {
     ctx.fillStyle = "#7F00FF";
     ctx.fillRect(
-      (this.x * sizeCase),  //conversion position en px
-      (this.y * sizeCase),
+      this.x * sizeCase, //conversion position en px
+      this.y * sizeCase,
       sizeCase,
       sizeCase
     );
