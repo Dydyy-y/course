@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*détermine comment nav calcul l et L d'un element*/
+}
+
+body {
+    font-family: 'Georgia', serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+img {
+    display: block; /*il existe : block, inline, inline-block, flex, grid, none */
+}
+
+a { /*pour ne pas utiliser les parametres par défaults*/
+    text-decoration: none;
+    color: inherit;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 40px;
+    background: transparent; /* Transparent */
+}
