@@ -10,6 +10,10 @@
     <title>Botanist Restaurant</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="images/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    /> <!--pour icone footer-->
   </head>
   <body>
     <header class="header">
@@ -112,137 +116,114 @@
         </div>
       </section>
 
-      <section class="about">
-        <div class="about__container">
-          <article class="about__content">
-            <p class="about__text">
-              Botanist celebrates harmony with nature in an environment that is
-              as rich and diverse as the terroir it represents. The experience
-              reflects a new Pacific Northwest, one that has always been here,
-              just waiting to be discovered. This vibrant space features a
-              collection of venues: a Dining Room, Cocktail Bar and Lab, Garden
-              and TASCHEN Library, all inspired by the principles of botany.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="pacific-northwest">
-        <div class="pacific-northwest__media">
-          <img
-            src="images/pacific.jpg"
-            alt="Chef versant une sauce sur un plat gastronomique"
-            class="pacific-northwest__image"
-          />
-        </div>
-
-        <div class="pacific-northwest__content">
-          <h2 class="pacific-northwest__title">
-            A Taste of the Pacific Northwest
-          </h2>
-
-          <p class="pacific-northwest__text">
-            Botanist offers a dining destination rich in experiences...
+      <section class="intro">
+        <div class="intro__container">
+          <p class="intro__text">
+            Botanist celebrates harmony with nature in an environment that is as
+            rich and diverse as the terroir it represents. The experience
+            reflects a new Pacific Northwest, one that has always been here,
+            just waiting to be discovered. This vibrant space features a
+            collection of venues: a Dining Room, Cocktail Bar and Lab, Garden
+            and TASCHEN Library, all inspired by the principles of botany.
           </p>
-
-          <a href="#menus" class="button button--outline"> View Menus </a>
         </div>
       </section>
 
-      <section class="venue">
-        <article class="venue__restaurant">
-          <div class="venue__backgroundRestaurant">
+      <section class="taste">
+        <div class="taste__container">
+          <div class="taste__image">
             <img
-              src="images/restaurant.avif"
-              alt=""
-              class="venue__restaurantImage"
+              src="images/pacific.jpg"
+              alt="Plat gastronomique avec sauce versée"
             />
           </div>
-
-          <div class="venue__restau-content">
-            <h2 class="venue__titleRestaurant">Restaurant</h2>
-
-            <p class="venue__text">
-              Executive Chef Hector Laguna's menus depict the culinary abundance
-              and botany of our region - produce rooted from the soil of the
-              Northwest, sustainably sourced seafood and organic agricultural
-              methods from backyard suppliers.
+          <div class="taste__content">
+            <h2 class="taste__title">A TASTE OF THE PACIFIC NORTHWEST</h2>
+            <p class="taste__text">
+              A melding of our region's natural, unique resources that define
+              the true nature of Vancouver, our distinguished cocktail bar is
+              the platform for excellent cooking while growing to embody an
+              urban culture and a magical environment created in the North West
+              Coast environment proving you just may be taken to a whole new
+              world with a culinary adventure with a wide range of flavours for
+              you to digest in such a fine construct.
             </p>
-
-            <a href="#restaurant" class="button__restaurant"> Learn More </a>
+            <a href="#menus" class="taste__button">OUR MENUS</a>
           </div>
-        </article>
-
-        <article class="venue__bar">
-          <div class="venue__backgroundBar">
-            <img src="images/bar.avif" alt="" class="venue__barImage" />
-          </div>
-
-          <div class="venue__bar-content">
-            <h2 class="venue__titleBar">Bar</h2>
-
-            <p class="venue__text">
-              The award-winning Botanist Bar program features a list of
-              sophisticated yet whimsical cocktails alongside chemist-like
-              designs under the direction of Creative Beverage Director Grant
-              Sceney.
-            </p>
-
-            <a href="#bar" class="button__bar"> Learn More </a>
-          </div>
-        </article>
+        </div>
       </section>
 
-      <section class="restaurant-image">
-        <img
-          src="images/restaurant-interior.jpg"
-          alt="Intérieur du restaurant Botanist avec tables et chaises élégantes"
-          class="restaurant-image__photo"
-        />
+      <section class="split">
+        <div class="split__container">
+          <!--restaurant-->
+          <div class="split__item">
+            <img
+              src="images/restaurant.avif"
+              alt="Plats du restaurant Botanist"
+              class="split__image"
+            />
+            <div class="split__overlay">
+              <h2 class="split__title">RESTAURANT</h2>
+              <p class="split__text">
+                Executive Chef Hector Laguna's menus depict the culinary
+                abundance and botany of our region - produce rooted from the
+                soil of the Northwest, sustainably sourced seafood and organic
+                agricultural methods from backyard suppliers.
+              </p>
+              <a href="#restaurant" class="split__button">LEARN MORE</a>
+            </div>
+          </div>
+
+          <!--bar-->
+          <div class="split__item">
+            <img
+              src="images/bar.avif"
+              alt="Cocktail du bar Botanist"
+              class="split__image"
+            />
+            <div class="split__overlay">
+              <h2 class="split__title">BAR</h2>
+              <p class="split__text">
+                The award-winning Botanist Bar program features a list of
+                sophisticated yet whimsical cocktails alongside chemist-like
+                designs under the direction of Creative Beverage Director Grant
+                Sceney.
+              </p>
+              <a href="#bar" class="split__button">LEARN MORE</a>
+            </div>
+          </div>
+        </div>
       </section>
+
+      <footer class="footer">
+        <div class="footer__container">
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook" class="footer__social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" aria-label="Twitter" class="footer__social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="footer__social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+
+          <div class="footer__links">
+            <a href="#" class="footer__link">DIGITAL GIFT CARDS</a>
+            <a href="#" class="footer__link">FAIRMONT PACIFIC RIM</a>
+          </div>
+
+          <div class="footer__cta">
+            <a href="#" class="footer__button">STAY INFORMED</a>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">powered by BentoBox</p>
+        </div>
+      </footer>
     </main>
-
-    <footer class="footer">
-      <div class="footer__social">
-        <a
-          href="https://www.facebook.com/botanistdining/"
-          aria-label="Facebook"
-          target="_blank"
-          rel="noopener"
-          aria-describedby="audioeye_new_window_message"
-          ><span class="fa fa-facebook" aria-hidden="true"></span
-          ><span class="sr-only">Facebook</span></a
-        >
-        <a
-          href="https://twitter.com/botanistdining"
-          aria-label="Twitter"
-          target="_blank"
-          rel="noopener"
-          aria-describedby="audioeye_new_window_message"
-          ><span class="fa fa-brands fa-x-twitter" aria-hidden="true"></span
-          ><span class="sr-only">Twitter</span></a
-        >
-        <a
-          href="https://instagram.com/botanistdining/"
-          aria-label="Instagram"
-          target="_blank"
-          rel="noopener"
-          aria-describedby="audioeye_new_window_message"
-          ><span class="fa fa-instagram" aria-hidden="true"></span
-          ><span class="sr-only">Instagram</span></a
-        >
-      </div>
-
-      <div class="footer__links">
-        <a href="#">Digital Gift Cards</a>
-        <span>|</span>
-        <a href="#">Fairmont Pacific Rim</a>
-      </div>
-
-      <a href="#" class="footer__button">Stay Informed</a>
-
-      <p class="footer__copyright">powered by BentoBox</p>
-    </footer>
 
     <script src="js.js"></script>
   </body>
