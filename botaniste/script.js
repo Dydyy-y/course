@@ -1,4 +1,3 @@
-//menu burger
 const menuBtn = document.getElementById('menuBtn');
 const closeBtn = document.getElementById('closeMenu');
 const mobileMenu = document.getElementById('mobileMenu');
