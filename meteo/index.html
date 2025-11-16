@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Application météo affichant les prévisions avec des emojis"
+    />
+    <title>Météo emoji</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Météo en emojis</h1>
+    </header>
+
+    <main class="container">
+      <section
+        class="search-section"
+        aria-label="Recherche de ville"
+        search-section
+      >
+        <form class="search-box" id="searchForm">
+          <label for="cityInput" class="visually-hidden">
+            Nom de la ville
+          </label>
+          <input
+            type="search"
+            id="cityInput"
+            name="city"
+            placeholder="Entrez le nom d'une ville..."
+            aria-label="Entrez le nom d'une ville"
+            required
+          />
+          <button type="submit" id="searchBtn" aria-label="Lancer la recherche">
+            Rechercher
+          </button>
+        </form>
+      </section>
+
+      <section class="weather-section" aria-label="Résultats météo" section météo>
+        <article
+          class="weather-card"
+          id="weatherCard"
+          role="region"
+          aria-live="polite"
+        >
+          <header class="weather-header">
+            <h2 class="city-name" id="cityName">Paris</h2>
+          </header>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
