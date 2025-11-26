@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr_FR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Météo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Météo</h1>
+        
+        <!-- Zone de recherche -->
+        <section class="search-section">
+            <input 
+                type="text" 
+                id="cityInput" 
+                placeholder="Entrez une ville..."
+                aria-label="Nom de la ville"
+            >
+            <button id="searchButton">Rechercher</button>
+        </section>
+
+        <!-- Message de chargement -->
+        <p id="loader" class="loader hidden">Chargement...</p>
+
+        <!-- Carte météo (cachée par défaut) -->
+        <article id="weatherCard" class="weather-card hidden">
+            <h2 id="cityName" class="city-name"></h2>
+            <div id="weatherEmoji" class="weather-emoji"></div>
+            <p id="temperature" class="temperature"></p>
+            <p id="description" class="description"></p>
+        </article>
+
+        <!-- Historique des recherches -->
+        <section id="historySection" class="history-section hidden">
+            <h3>Dernières recherches</h3>
+            <div id="historyButtons" class="history-buttons"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
