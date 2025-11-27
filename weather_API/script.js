@@ -1,17 +1,33 @@
-const searchButton = document.getElementById('searchButton');
-const weatherCard = document.getElementById('weatherCard');
-const weatherEmoji = document.getElementById('weatherEmoji');
+const searchButton = document.getElementById("searchButton");
+const cityInput = document.getElementById("cityInput");
+const weatherCard = document.getElementById("weatherCard");
+const weatherEmoji = document.getElementById("weatherEmoji");
 
-searchButton.addEventListener('click', () => {
-    console.log('Recherche lancée !');
-    
-    weatherCard.classList.remove('hidden');
+//message console dans console
+searchButton?.addEventListener("click", () => {
+  console.log("Recherche lancée !");
+  weatherCard?.classList.remove("hidden");
 });
 
-weatherEmoji.addEventListener('mouseenter', () => {
-    weatherEmoji.style.transform = 'scale(1.3)';
+//agrandir l'emoji survol
+weatherEmoji?.addEventListener("mouseenter", () => {
+  weatherEmoji.style.transform = "scale(1.3)";
 });
 
-weatherEmoji.addEventListener('mouseleave', () => {
-    weatherEmoji.style.transform = 'scale(1)';
+//réduire
+weatherEmoji?.addEventListener("mouseleave", () => {
+  weatherEmoji.style.transform = "scale(1)";
+});
+
+//mode sombre
+weatherCard?.addEventListener("click", () => {
+  weatherCard.classList.toggle("dark-mode");
+});
+
+//lancer recherche
+cityInput?.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    console.log("Recherche lancée via Entrée !");
+    weatherCard?.classList.remove("hidden");
+  }
 });
