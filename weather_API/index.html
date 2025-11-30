@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr_FR">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,18 +10,22 @@
     <main class="container">
       <h1>Météo</h1>
       <section class="search-section">
-        <input
-          type="text"
-          id="cityInput"
-          placeholder="Entrez une ville..."
-          aria-label="Nom de la ville"
-        />
-        <button id="searchButton">Rechercher</button>
+        <form id="searchForm">
+          <input
+            type="search"
+            id="cityInput"
+            name="city"
+            placeholder="Entrez une ville..."
+            aria-label="Nom de la ville"
+            required
+          />
+          <button type="submit" id="searchButton">Rechercher</button>
+        </form>
       </section>
 
       <p id="loader" class="loader hidden">Chargement...</p>
 
-      <article id="weatherCard" class="weather-card hidden">
+      <article id="weatherCard" class="weather-card hidden">  <!--id + class : si on veut implenter d'autres cartes-->
         <h2 id="cityName" class="city-name"></h2>
         <div id="weatherEmoji" class="weather-emoji"></div>
         <p id="temperature" class="temperature"></p>
