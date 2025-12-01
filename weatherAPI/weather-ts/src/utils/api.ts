@@ -25,3 +25,24 @@ export async function getWeatherByCity(city: string): Promise<WeatherData> {
     weather: data.weather[0].main,
   };
 }
+
+export async function getWeatherByCoords(
+  latitude: number,
+  longitude: number
+): Promise<WeatherData> {
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=fr`;
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error("Impossible de récupérer la météo pour cette position !");
+  }
+
+  const data = await response.json();
+
+  return {
+    city: data.name,
+    temperature: Math.round(data.main.temp),
+    weather: data.weather[0].main,
+  };
+}

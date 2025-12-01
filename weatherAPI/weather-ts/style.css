@@ -6,45 +6,106 @@
 }
 
 :root {
-    --background-default: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --background-cold: linear-gradient(135deg, #2e5f9e 0%, #1a3a5c 100%);
-    --background-mild: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
-    --background-warm: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
-    --card-light: #ffffff;
-    --card-dark: #2c3e50;
-    --text-light: #2c3e50;
-    --text-dark: #ffffff;
-    --shadow: rgba(0, 0, 0, 0.2);
+    --matrix-green: #00ff41;
+    --matrix-dark: #0d0208;
+    --matrix-darker: #000000;
+    --card-bg: rgba(0, 0, 0, 0.85);
+    --shadow: rgba(0, 255, 65, 0.5);
 }
 
-/* Body et container principal */
+/* Animation Matrix - Lettres qui tombent */
+@keyframes matrix-rain {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Body et background Matrix */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Courier New', monospace;
     min-height: 100vh;
-    background: var(--background-default);
+    background: var(--matrix-darker);
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 65, 0.05) 0%, transparent 50%);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    transition: background 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Canvas pour l'effet Matrix (optionnel si tu veux un effet plus complexe) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.03) 2px,
+        rgba(0, 255, 65, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
 }
 
 .container {
     max-width: 500px;
     width: 100%;
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
-/* Titre principal */
+/* Titre principal style Matrix */
 h1 {
-    color: white;
+    color: var(--matrix-green);
     font-size: 2.5rem;
     margin-bottom: 30px;
-    text-shadow: 2px 2px 4px var(--shadow);
+    text-shadow: 
+        0 0 5px var(--matrix-green),
+        0 0 10px var(--matrix-green),
+        0 0 20px var(--matrix-green);
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: glitch 2s infinite;
 }
 
-/* Section de recherche */
-.search-section {
+@keyframes glitch {
+    0%, 90%, 100% {
+        text-shadow: 
+            0 0 5px var(--matrix-green),
+            0 0 10px var(--matrix-green),
+            0 0 20px var(--matrix-green);
+    }
+    95% {
+        text-shadow: 
+            0 0 5px var(--matrix-green),
+            0 0 10px var(--matrix-green),
+            0 0 20px var(--matrix-green),
+            2px 2px 0 rgba(255, 0, 0, 0.7);
+    }
+}
+
+/* Formulaire de recherche */
+.search-box {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
@@ -54,79 +115,142 @@ h1 {
     flex: 1;
     padding: 15px;
     font-size: 1rem;
-    border: none;
-    border-radius: 25px;
-    box-shadow: 0 4px 6px var(--shadow);
+    font-family: 'Courier New', monospace;
+    background: var(--card-bg);
+    color: var(--matrix-green);
+    border: 2px solid var(--matrix-green);
+    border-radius: 5px;
+    box-shadow: 
+        0 0 10px rgba(0, 255, 65, 0.3),
+        inset 0 0 5px rgba(0, 255, 65, 0.1);
     outline: none;
-    transition: transform 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 #cityInput:focus {
-    transform: scale(1.02);
+    border-color: var(--matrix-green);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 65, 0.6),
+        inset 0 0 10px rgba(0, 255, 65, 0.2);
 }
 
-#searchButton {
-    padding: 15px 30px;
+#cityInput::placeholder {
+    color: rgba(0, 255, 65, 0.5);
+}
+
+/* Boutons style Matrix */
+button {
+    padding: 15px 25px;
     font-size: 1rem;
     font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    border-radius: 25px;
+    font-family: 'Courier New', monospace;
+    color: var(--matrix-darker);
+    background: var(--matrix-green);
+    border: 2px solid var(--matrix-green);
+    border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 4px 6px var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 
+        0 0 10px rgba(0, 255, 65, 0.5),
+        0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-#searchButton:hover {
+button:hover {
+    background: var(--matrix-darker);
+    color: var(--matrix-green);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 65, 0.8),
+        0 6px 12px rgba(0, 0, 0, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px var(--shadow);
 }
 
-#searchButton:active {
+button:active {
     transform: translateY(0);
+    box-shadow: 
+        0 0 10px rgba(0, 255, 65, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Loader */
+#searchBtn {
+    flex-shrink: 0;
+}
+
+#geoBtn {
+    flex-shrink: 0;
+}
+
+/* Loader Matrix */
 .loader {
-    color: white;
+    color: var(--matrix-green);
     font-size: 1.2rem;
     font-weight: bold;
+    text-shadow: 0 0 10px var(--matrix-green);
     animation: pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    0%, 100% { 
+        opacity: 1;
+        text-shadow: 0 0 10px var(--matrix-green);
+    }
+    50% { 
+        opacity: 0.3;
+        text-shadow: 0 0 5px var(--matrix-green);
+    }
 }
 
-/* Carte météo */
+/* Carte météo style Matrix */
 .weather-card {
-    background: var(--card-light);
-    color: var(--text-light);
-    border-radius: 20px;
+    background: var(--card-bg);
+    color: var(--matrix-green);
+    border: 2px solid var(--matrix-green);
+    border-radius: 10px;
     padding: 30px;
     margin-top: 20px;
-    box-shadow: 0 8px 16px var(--shadow);
-    cursor: pointer;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 65, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.weather-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(0, 255, 65, 0.1) 50%, 
+        transparent 70%);
+    animation: scan 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
 }
 
 .weather-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 24px var(--shadow);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 65, 0.5),
+        0 12px 24px rgba(0, 0, 0, 0.7);
+    border-color: var(--matrix-green);
 }
 
-/* Mode sombre de la carte */
-.weather-card.dark-mode {
-    background: var(--card-dark);
-    color: var(--text-dark);
-}
-
-.city-name {
+.weather-card h2 {
     font-size: 2rem;
     margin-bottom: 20px;
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .weather-emoji {
@@ -134,63 +258,107 @@ h1 {
     margin: 20px 0;
     transition: transform 0.3s ease;
     user-select: none;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.5));
 }
 
 .weather-emoji:hover {
-    transform: scale(1.3);
+    transform: scale(1.2) rotate(10deg);
+    filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.8));
 }
 
 .temperature {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: bold;
     margin: 15px 0;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
 }
 
 .description {
     font-size: 1.2rem;
     opacity: 0.8;
-    text-transform: capitalize;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.details {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+.detail-item .label {
+    opacity: 0.7;
+}
+
+/* Mode sombre (inverse les couleurs) */
+.weather-card.dark-mode {
+    background: var(--matrix-green);
+    color: var(--matrix-darker);
+    border-color: var(--matrix-darker);
+}
+
+.weather-card.dark-mode h2,
+.weather-card.dark-mode .temperature {
+    color: var(--matrix-darker);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 /* Section historique */
-.history-section {
+.history {
     margin-top: 30px;
 }
 
-.history-section h3 {
-    color: white;
+.history h3 {
+    color: var(--matrix-green);
     font-size: 1.2rem;
     margin-bottom: 15px;
-    text-shadow: 1px 1px 2px var(--shadow);
+    text-shadow: 0 0 10px var(--matrix-green);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.history-buttons {
+#historyButtons {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
 }
 
-.history-buttons button {
+#historyButtons button {
     padding: 10px 20px;
     font-size: 0.9rem;
-    color: white;
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid white;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(10px);
+    background: transparent;
+    color: var(--matrix-green);
+    border: 1px solid var(--matrix-green);
 }
 
-.history-buttons button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
+#historyButtons button:hover {
+    background: var(--matrix-green);
+    color: var(--matrix-darker);
+}
+
+/* Bouton mode sombre */
+.dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    z-index: 100;
 }
 
 /* Classe pour cacher les éléments */
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* Responsive */
@@ -199,11 +367,15 @@ h1 {
         font-size: 2rem;
     }
     
-    .search-section {
+    .search-box {
         flex-direction: column;
     }
     
     .weather-emoji {
         font-size: 4rem;
+    }
+    
+    button {
+        width: 100%;
     }
 }
