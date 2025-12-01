@@ -1,4 +1,4 @@
-import type { WeatherData } from "./api.js";
+import type { WeatherData /*, WeatherCondition */ } from "./api.js";
 
 export function displayWeather(data: WeatherData): void {
   const cityName = document.getElementById("cityName") as HTMLElement;
