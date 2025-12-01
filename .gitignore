@@ -1,1 +1,24 @@
+# Node.js
+node_modules/
+npm-debug.log*
+
+# TypeScript - Fichiers compilés
+dist/
+*.js
+*.js.map
+
+# Mais GARDER les fichiers de config
+!tsconfig.json
+
+# Environnement
+.env
+.env.local
+
+# Éditeur
+.vscode/
+.idea/
+
+# Système
 .DS_Store
+Thumbs.db
+EOF

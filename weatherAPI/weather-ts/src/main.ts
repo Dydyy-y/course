@@ -1,19 +1,23 @@
-const searchButton = document.getElementById("searchButton");
-const cityInput = document.getElementById("cityInput");
-const searchForm = document.getElementById("searchForm");
-const weatherCard = document.getElementById("weatherCard");
-const weatherEmoji = document.getElementById("weatherEmoji");
-const historySection = document.getElementById("historySection");
-const historyButtons = document.getElementById("historyButtons");
+const searchButton = document.getElementById("searchButton") as HTMLButtonElement;
+const cityInput = document.getElementById("cityInput") as HTMLInputElement;
+const searchForm = document.getElementById("searchForm") as HTMLFormElement;
+const weatherCard = document.getElementById("weatherCard") as HTMLElement;
+const weatherEmoji = document.getElementById("weatherEmoji") as HTMLElement;
+const loader = document.getElementById("loader") as HTMLElement;
+const historySection = document.getElementById("historySection") as HTMLElement;
+const historyButtons = document.getElementById("historyButtons") as HTMLElement;
+const cityName = document.getElementById("cityName") as HTMLElement;
+const temperature = document.getElementById("temperature") as HTMLElement;
+const description = document.getElementById("description") as HTMLElement;
 
 const API_KEY = "9183edc464cdf289bf8cfbcd6276b86d";
 
-async function fetchWeather() {
+async function fetchWeather(): Promise<void> {
   const city = cityInput.value.trim(); //value : acceder conteniu input ; trim() : supprimer espaces debut/fin
   if (!city) return;
 
-  document.getElementById("loader").classList.remove("hidden");
-  document.getElementById("weatherCard").classList.add("hidden");
+  loader.classList.remove("hidden");
+  weatherCard.classList.add("hidden");
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=fr`;
 
@@ -26,34 +30,36 @@ async function fetchWeather() {
 
     const data = await response.json();
 
-    document.getElementById("loader").classList.add("hidden");
+    loader.classList.add("hidden");
 
     displayWeather(data);
     
     saveToHistory(data.name);
 
   } catch (error) {
-    document.getElementById("loader").classList.add("hidden");
-    alert(error.message);
+    loader.classList.add("hidden");
+    if (error instanceof Error) {
+      alert(error.message);
+    }
     weatherCard.classList.add("hidden");
   }
 }
 
-function displayWeather(data) {
+function displayWeather(data: any): void {
   const { name, main, weather } = data; //destructuration de l'objet data
   const temp = Math.round(main.temp);
-  const description = weather[0].description;
+  const desc = weather[0].description;
   const weatherMain = weather[0].main;
 
-  document.getElementById("cityName").textContent = name;
-  document.getElementById("temperature").textContent = `${temp}°C`;
-  document.getElementById("description").textContent = description;
+  cityName.textContent = name;
+  temperature.textContent = `${temp}°C`;
+  description.textContent = desc;
   weatherEmoji.textContent = getWeatherEmoji(weatherMain);
 
   weatherCard.classList.remove("hidden");
 }
 
-function getWeatherEmoji(weatherMain) {
+function getWeatherEmoji(weatherMain: string): string {
   switch (weatherMain) {
     case "Clear":
       return "☀️";
@@ -82,15 +88,15 @@ function getWeatherEmoji(weatherMain) {
   }
 }
 
-function saveToHistory(city) {
+function saveToHistory(city: string): void {
   //recup historique
-  let history = JSON.parse(localStorage.getItem("searchHistory")) || [];
+  let history: string[] = JSON.parse(localStorage.getItem("searchHistory") || "[]");
   //localStorage : stockage local du navigateur
   //json pour transformer le str de localstorage en tableau JS
 
 
   //retirer la ville si elle existe deja
-  history = history.filter(c => c.toLowerCase() !== city.toLowerCase());
+  history = history.filter((c: string) => c.toLowerCase() !== city.toLowerCase());
 
   //ajouter  ville début
   history.unshift(city);
@@ -104,8 +110,8 @@ function saveToHistory(city) {
   displayHistory();
 }
 
-function displayHistory() {
-  const history = JSON.parse(localStorage.getItem("searchHistory")) || []; //recup historique
+function displayHistory(): void {
+  const history: string[] = JSON.parse(localStorage.getItem("searchHistory") || "[]"); //recup historique
 
   if (history.length === 0) {
     historySection.classList.add("hidden");
@@ -119,7 +125,7 @@ function displayHistory() {
   historyButtons.innerHTML = "";
 
   // Créer un bouton par ville
-  history.forEach(city => {
+  history.forEach((city: string) => {
     const button = document.createElement("button");
     button.textContent = city;
     
@@ -137,7 +143,7 @@ window.addEventListener("DOMContentLoaded", () => {
   displayHistory();
 });
 
-searchForm?.addEventListener("submit", (event) => {
+searchForm?.addEventListener("submit", (event: SubmitEvent) => {
   event.preventDefault();
   console.log("Recherche lancée (submit) !");
   fetchWeather();
