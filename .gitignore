@@ -7,6 +7,10 @@ dist/
 *.js
 *.js.map
 
+# Réinclure le `dist/` spécifique du projet `weather-ts` (committer le build)
+!weatherAPI/weather-ts/dist/
+!weatherAPI/weather-ts/dist/**
+
 # Mais GARDER les fichiers de config
 !tsconfig.json
 
