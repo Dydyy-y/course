@@ -1,0 +1,209 @@
+/* Reset et variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-default: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --background-cold: linear-gradient(135deg, #2e5f9e 0%, #1a3a5c 100%);
+    --background-mild: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+    --background-warm: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+    --card-light: #ffffff;
+    --card-dark: #2c3e50;
+    --text-light: #2c3e50;
+    --text-dark: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* Body et container principal */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: var(--background-default);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background 0.5s ease;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Titre principal */
+h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px var(--shadow);
+}
+
+/* Section de recherche */
+.search-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#cityInput {
+    flex: 1;
+    padding: 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px var(--shadow);
+    outline: none;
+    transition: transform 0.2s ease;
+}
+
+#cityInput:focus {
+    transform: scale(1.02);
+}
+
+#searchButton {
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#searchButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--shadow);
+}
+
+#searchButton:active {
+    transform: translateY(0);
+}
+
+/* Loader */
+.loader {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Carte météo */
+.weather-card {
+    background: var(--card-light);
+    color: var(--text-light);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 8px 16px var(--shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.weather-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px var(--shadow);
+}
+
+/* Mode sombre de la carte */
+.weather-card.dark-mode {
+    background: var(--card-dark);
+    color: var(--text-dark);
+}
+
+.city-name {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.weather-emoji {
+    font-size: 5rem;
+    margin: 20px 0;
+    transition: transform 0.3s ease;
+    user-select: none;
+}
+
+.weather-emoji:hover {
+    transform: scale(1.3);
+}
+
+.temperature {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.description {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    text-transform: capitalize;
+}
+
+/* Section historique */
+.history-section {
+    margin-top: 30px;
+}
+
+.history-section h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px var(--shadow);
+}
+
+.history-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.history-buttons button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.history-buttons button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Classe pour cacher les éléments */
+.hidden {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .search-section {
+        flex-direction: column;
+    }
+    
+    .weather-emoji {
+        font-size: 4rem;
+    }
+}
