@@ -1,4 +1,5 @@
 import { getWeatherByCity, getWeatherByCoords } from "./utils/api.js";
+import type { WeatherData } from "./utils/api.js";
 import { displayWeather, showLoader, hideLoader, hideWeatherCard } from "./utils/dom.js";
 import { saveHistoryToStorage, displayHistory } from "./utils/storage.js";
 
@@ -8,9 +9,9 @@ const geoBtn = document.getElementById("geoBtn") as HTMLButtonElement;
 const weatherCard = document.getElementById("weatherCard") as HTMLElement;
 const weatherEmoji = document.getElementById("weatherEmoji") as HTMLElement;
 
-async function handleSearch(): Promise<void> {
+async function handleSearch(): Promise<WeatherData | null> {
   const city = cityInput.value.trim();
-  if (!city) return;
+  if (!city) return null;
 
   showLoader();
   hideWeatherCard();
@@ -22,49 +23,50 @@ async function handleSearch(): Promise<void> {
 
     displayWeather(weatherData);
     saveHistoryToStorage(weatherData.city);
+
+    return weatherData;
   } catch (error) {
     hideLoader();
     if (error instanceof Error) {
       alert(error.message);
     }
     hideWeatherCard();
+    return null;
   }
 }
 
-async function handleGeolocation(): Promise<void> {
+async function handleGeolocation(): Promise<WeatherData | null> {
   if (!navigator.geolocation) {
     alert("La géolocalisation n'est pas supportée par votre navigateur !");
-    return;
+    return null;
   }
 
   showLoader();
   hideWeatherCard();
 
-  navigator.geolocation.getCurrentPosition(
-    async (position) => {
-      try {
-        const weatherData = await getWeatherByCoords(
-          position.coords.latitude,
-          position.coords.longitude
-        );
+  try {
+    const position = await new Promise<GeolocationPosition>((resolve, reject) =>
+      navigator.geolocation.getCurrentPosition(resolve, reject)
+    );
 
-        hideLoader();
-        displayWeather(weatherData);
-        saveHistoryToStorage(weatherData.city);
-      } catch (error) {
-        hideLoader();
-        if (error instanceof Error) {
-          alert(error.message);
-        }
-        hideWeatherCard();
-      }
-    },
-    (error) => {
-      hideLoader();
+    const weatherData = await getWeatherByCoords(
+      position.coords.latitude,
+      position.coords.longitude
+    );
+
+    hideLoader();
+    displayWeather(weatherData);
+    saveHistoryToStorage(weatherData.city);
+
+    return weatherData;
+  } catch (error) {
+    hideLoader();
+    if (error instanceof Error) {
       alert("Impossible d'obtenir votre position : " + error.message);
-      hideWeatherCard();
     }
-  );
+    hideWeatherCard();
+    return null;
+  }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
