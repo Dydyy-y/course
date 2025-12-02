@@ -1,37 +1,24 @@
 import React from 'react';
 
-interface Props {
-  onSelectLetter: (l: string) => void;
-  playedLetters: string[];
-  disabled?: boolean;
+interface KeyboardProps {
+    onSelectLetter: (letter: string) => void;
+    playedLetters: string[];
 }
 
-const alphabet = [...Array(26)].map((_, i) => String.fromCharCode(65 + i).toLowerCase());
-
-const Keyboard: React.FC<Props> = ({ onSelectLetter, playedLetters, disabled = false }) => {
-  return (
-    <div style={{ marginTop: '1rem', display: 'flex', flexWrap: 'wrap', maxWidth: '28rem' }}>
-      {alphabet.map((letter) => {
-        const isPlayed = playedLetters.includes(letter);
+const Keyboard: React.FC<KeyboardProps> = ({ onSelectLetter, playedLetters }) => { //recoit les deux props de Game.tsx 
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const letters = alphabet.map((letter) => {
         return (
-          <button
-            key={letter}
-            onClick={() => onSelectLetter(letter)}
-            disabled={isPlayed || disabled}
-            style={{
-              width: '2rem',
-              height: '2rem',
-              margin: '0.25rem',
-              textTransform: 'uppercase',
-            }}
-            aria-pressed={isPlayed}
-          >
-            {letter}
-          </button>
+            <button key={letter} onClick={() => onSelectLetter(letter)} disabled={playedLetters.includes(letter)}>
+                {letter}
+            </button>
         );
-      })}
-    </div>
-  );
+    });
+    return (
+        <div>
+            {letters}
+        </div>
+    );
 };
 
 export default Keyboard;
