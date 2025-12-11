@@ -1,16 +1,25 @@
 import React from 'react';
 
 interface HangmanProps {
-    errors: number; //le nombre d'erreurs actuelles
-    maxErrors: number; // les erreurs maximum autorisées
+    errors: number; //nb error actuel
 }
 
-const HangmanDisplay: React.FC<HangmanProps> = ({ errors, maxErrors }) => { //recoit les deux props de Game.tsx
-    const parts = ['🙃', '👕', '🦵', '🦵', '🤛', '🤜'];
-    const shownParts = parts.slice(0, errors);
+//Étape 6 : Composant HangmanDisplay
+//Afficher un pendu selon la valeur de `errors`.
+const HangmanDisplay: React.FC<HangmanProps> = ({ errors }) => {
+    const stages = [
+        '🙂 Début de la partie',
+        '😐 1ère erreur',
+        '😕 2ème erreur',
+        '😟 3ème erreur',
+        '😨 4ème erreur',
+        '😰 5ème erreur',
+        '💀 6ème erreur - PERDU !'
+    ];
+
     return (
-        <div>
-            <p>HangmanDisplay</p>
+        <div style={{ margin: '20px 0', fontSize: '24px', textAlign: 'center' }}>
+            <p>{stages[errors] || stages[stages.length - 1]}</p>
         </div>
     );
 };
