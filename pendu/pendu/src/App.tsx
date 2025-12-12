@@ -1,19 +1,19 @@
-
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Game from './components/Game';
 
 function App() {
   return (
-    <React.Fragment>
-      <header>
-        <h1>Pendu en React</h1>
-      </header>
-      <main>
-        <Game />
-      </main>
-    </React.Fragment>
+    <div className="App-header">
+      <div style={{ width: '100%' }}>
+        <header>
+          <h1>Pendu en React</h1>
+        </header>
+        <main>
+          <Game />
+        </main>
+      </div>
+    </div>
   );
 }
 

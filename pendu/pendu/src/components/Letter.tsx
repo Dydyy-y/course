@@ -11,8 +11,9 @@ interface LetterProps {
 //Sinon : afficher `_`
 
 const Letter: React.FC<LetterProps> = ({ letter }) => {
+    const cls = letter.state === 'Display' ? 'letter display' : 'letter hidden';
     return (
-        <span style={{ margin: '0 5px', fontSize: '24px', fontWeight: 'bold' }}>
+        <span className={cls}>
             {letter.state === 'Display' ? letter.display : '_'}
         </span>
     );
